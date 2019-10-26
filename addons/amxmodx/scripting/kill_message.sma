@@ -4,7 +4,7 @@
 #pragma semicolon 1
 
 new const Title[] = "Tutor kill's message";
-new const Version[] = "1.0.0";
+new const Version[] = "1.0.1";
 new const Author[] = "unrealfart";
 
 const TASK_TUTOR = 57810;
@@ -27,7 +27,7 @@ new const g_TutorPrecache[][] =
 new g_iMsgTutor;
 new g_iMsgTutClose;
 
-new TutorColor:g_iColorTutorMessage;
+new g_iColorTutorMessage;
 new Float:g_flTimeTutorMessage;
 
 new const g_szWeaponName[][] = 
@@ -137,7 +137,7 @@ public CSGameRules_DeathNotice(iVictim, iKiller, Inflictor)
 	return HC_CONTINUE;
 }
 
-stock tutorMake(id, TutorColor:Color, Float:fTime = 0.0, const szText[], any:...)
+stock tutorMake(id, Color, Float:fTime = 0.0, const szText[], any:...)
 {
 	new szMessage[192];
 	vformat(szMessage, charsmax(szMessage), szText, 5);
@@ -149,7 +149,7 @@ stock tutorMake(id, TutorColor:Color, Float:fTime = 0.0, const szText[], any:...
 		write_byte(0);
 		write_short(0);
 		write_short(0);
-		write_short(1<<_:Color);
+		write_short(1<<Color);
 		message_end();
 	}
 	else if(is_user_connected(id))
@@ -159,7 +159,7 @@ stock tutorMake(id, TutorColor:Color, Float:fTime = 0.0, const szText[], any:...
 		write_byte(0);
 		write_short(0);
 		write_short(0);
-		write_short(1<<_:Color);
+		write_short(1<<Color);
 		message_end();
 	}
 	
